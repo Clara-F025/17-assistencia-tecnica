@@ -1,11 +1,11 @@
 package br.fiap.assistencia_tecnica.web.controller;
 
+import br.fiap.assistencia_tecnica.domain.Cliente;
 import br.fiap.assistencia_tecnica.service.ClienteService;
 import br.fiap.assistencia_tecnica.web.dto.ClienteDTO;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/cliente")
@@ -17,8 +17,19 @@ public class ClienteController {
     }
 
     @PostMapping
-    public void cadastrar(@RequestBody ClienteDTO clienteDTO) {
-
+    public Cliente cadastrar(@RequestBody ClienteDTO clienteDTO) {
+        return service.cadastrar(clienteDTO);
     }
+
+    @GetMapping("/listar")
+    public List<Cliente> listar(){
+        return service.listar();
+    }
+
+    @GetMapping("/{id}")
+    public Cliente listarPorId(@PathVariable Long id){
+        return service.listarPorId(id);
+    }
+
 
 }
