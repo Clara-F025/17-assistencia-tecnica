@@ -11,7 +11,7 @@ public class Equipamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID_EQUIP")
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="ID_CLIENTE")
     private Cliente cliente;
     private String tipo;
